@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +11,23 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const norse = localFont({
+  src: [
+    {
+      path: '../fonts/Norse.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Norsebold.otf',
+      weight: '700',
+      style: 'normal',
+    }
+  ],
+  variable: '--font-norse',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -24,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${norse.variable}`}>
         {children}
       </body>
     </html>
