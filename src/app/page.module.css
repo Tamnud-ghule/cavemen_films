@@ -76,16 +76,16 @@
   width: auto;
   height: auto;
   /* Use clamp to ensure it's not too big on huge screens or too small on mobile */
-  /* min-width: 250px | responsive: 60vw | max-width: 800px */
-  max-width: clamp(250px, 60vw, 800px);
+  /* min-width: 250px | responsive: 60vw | max-width: 1400px (increased for 2k/4k) */
+  max-width: clamp(250px, 60vw, 1400px);
   object-fit: contain;
 }
 
 .imageFilms {
   width: auto;
   height: auto;
-  /* Reduced proportionally. min: 100px | responsive: 20vw | max: 300px */
-  max-width: clamp(100px, 35vw, 35vw);
+  /* Reduced proportionally. min: 100px | responsive: 35vw | max: 800px */
+  max-width: clamp(100px, 35vw, 800px);
   object-fit: contain;
   margin-left: 15%;
   /* Indent "Films" slightly */
