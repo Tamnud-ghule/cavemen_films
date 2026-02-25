@@ -68,23 +68,52 @@
   gap: 0.5rem;
   /* subtle animation for the title container */
   animation: fadeInUp 1s ease-out forwards;
+  /* Push the titles higher up the screen */
+  transform: translateY(-5vh);
 }
 
 .imageCavemen {
   width: auto;
   height: auto;
-  max-width: 60vw;
+  /* Use clamp to ensure it's not too big on huge screens or too small on mobile */
+  /* min-width: 250px | responsive: 60vw | max-width: 800px */
+  max-width: clamp(250px, 60vw, 800px);
   object-fit: contain;
 }
 
 .imageFilms {
   width: auto;
   height: auto;
-  max-width: 20vw;
-  /* Reduced from 30vw */
+  /* Reduced proportionally. min: 100px | responsive: 20vw | max: 300px */
+  max-width: clamp(100px, 35vw, 35vw);
   object-fit: contain;
-  margin-left: 18%;
+  margin-left: 15%;
   /* Indent "Films" slightly */
+}
+
+/* Media Queries for smaller screens and portrait aspects */
+@media (max-width: 768px) {
+  .content {
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  .titleContainer {
+    align-items: center;
+  }
+
+  .imageCavemen {
+    max-width: 80vw;
+    /* Take up more room on smaller screens */
+  }
+
+  .imageFilms {
+    max-width: 40vw;
+    /* Scale up Films proportionally */
+    margin-left: 0;
+    /* Center Films under Cavemen on mobile */
+    margin-top: 1rem;
+  }
 }
 
 .audioControls {
