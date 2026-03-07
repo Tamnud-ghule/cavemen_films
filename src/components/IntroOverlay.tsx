@@ -8,7 +8,7 @@ import FramePlayer from "./FramePlayer";
 const INTRO_PLAYED_KEY = "cavemen_intro_played";
 
 export default function IntroOverlay() {
-    const [phase, setPhase] = useState<"playing" | "fading" | "done">("playing");
+    const [phase, setPhase] = useState<"waiting" | "playing" | "fading" | "done">("waiting");
 
     useEffect(() => {
         if (sessionStorage.getItem(INTRO_PLAYED_KEY)) {
@@ -30,26 +30,31 @@ export default function IntroOverlay() {
             <motion.div
                 className={styles.overlay}
                 key="intro-overlay"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: phase === "fading" ? 0 : 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                onAnimationComplete={() => {
+                    if (phase === "fading") handleFadeComplete();
+                }}
+                onClick={() => phase === "waiting" && setPhase("playing")}
+                style={{ cursor: phase === "waiting" ? "pointer" : "default" }}
             >
-                <FramePlayer
-                    onFadeStart={() => setPhase("fading")}
-                    onComplete={() => { }}
-                />
-
-                <AnimatePresence>
-                    {phase === "fading" && (
-                        <motion.div
-                            key="fade-black"
-                            className={styles.fadeToBlack}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1.2, ease: "easeInOut" }}
-                            onAnimationComplete={handleFadeComplete}
-                        />
-                    )}
-                </AnimatePresence>
+                {phase === "waiting" ? (
+                    <motion.div
+                        className={styles.clickPrompt}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        click anywhere to enter...
+                    </motion.div>
+                ) : (
+                    <FramePlayer
+                        onFadeStart={() => setPhase("fading")}
+                        onComplete={() => { }}
+                    />
+                )}
             </motion.div>
         </AnimatePresence>
     );
