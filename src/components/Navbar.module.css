@@ -1,0 +1,47 @@
+/* Minimal Navbar Styles */
+.navbar {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    z-index: 50;
+}
+
+.navLinks {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navLinks li a {
+    font-family: var(--font-norse), 'Norse', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.navLinks li a:hover,
+.navLinks li a.active {
+    color: #ffffff;
+}
+
+.navLinks li a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.navLinks li a:hover::after,
+.navLinks li a.active::after {
+    width: 100%;
+}
