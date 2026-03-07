@@ -21,6 +21,10 @@ export default function FramePlayer({ onComplete, onFadeStart }: FramePlayerProp
         let animationFrameId: number;
         let isCancelled = false;
 
+        const audio = new Audio('/bonfire.mp3');
+        audio.loop = false;
+        let audioStarted = false;
+
         const updateSize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -61,6 +65,14 @@ export default function FramePlayer({ onComplete, onFadeStart }: FramePlayerProp
         const playFrames = (time: number) => {
             if (isCancelled) return;
             const deltaTime = time - lastDrawTime;
+
+            if (!audioStarted && currentFrame > 0) {
+                audioStarted = true;
+                // Attempt to play audio
+                audio.play().catch(e => {
+                    console.warn("Autoplay prevented for audio:", e);
+                });
+            }
 
             if (deltaTime >= frameInterval) {
                 if (currentFrame < frameCount) {
@@ -103,6 +115,8 @@ export default function FramePlayer({ onComplete, onFadeStart }: FramePlayerProp
 
         return () => {
             isCancelled = true;
+            audio.pause();
+            audio.src = "";
             window.removeEventListener("resize", updateSize);
             if (animationFrameId) {
                 cancelAnimationFrame(animationFrameId);
