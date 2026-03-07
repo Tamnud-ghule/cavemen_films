@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./IntroOverlay.module.css";
+import FramePlayer from "./FramePlayer";
 
 const INTRO_PLAYED_KEY = "cavemen_intro_played";
 
 export default function IntroOverlay() {
     const [phase, setPhase] = useState<"playing" | "fading" | "done">("playing");
-    const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         if (sessionStorage.getItem(INTRO_PLAYED_KEY)) {
@@ -16,13 +16,6 @@ export default function IntroOverlay() {
             window.dispatchEvent(new CustomEvent("introComplete"));
         }
     }, []);
-
-    const handleTimeUpdate = () => {
-        if (videoRef.current && videoRef.current.currentTime >= 5 && phase === "playing") {
-            videoRef.current.pause();
-            setPhase("fading");
-        }
-    };
 
     const handleFadeComplete = () => {
         sessionStorage.setItem(INTRO_PLAYED_KEY, "true");
@@ -40,16 +33,10 @@ export default function IntroOverlay() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                <video
-                    ref={videoRef}
-                    className={styles.introVideo}
-                    autoPlay
-                    muted
-                    playsInline
-                    onTimeUpdate={handleTimeUpdate}
-                >
-                    <source src="/cavemenintro.mp4" type="video/mp4" />
-                </video>
+                <FramePlayer
+                    onFadeStart={() => setPhase("fading")}
+                    onComplete={() => { }}
+                />
 
                 <AnimatePresence>
                     {phase === "fading" && (
