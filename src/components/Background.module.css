@@ -1,0 +1,76 @@
+/* Video Background Styles */
+.backgroundVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10;
+    object-fit: fill;
+}
+
+.videoOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: -9;
+    pointer-events: none;
+}
+
+/* Wrapper that fades in after intro completes */
+.bgWrapper {
+    transition: opacity 1.8s ease-in-out;
+}
+
+.bgHidden {
+    opacity: 0;
+}
+
+.bgVisible {
+    opacity: 1;
+}
+
+/* Audio button visibility */
+.audioControls {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    background: rgba(20, 20, 23, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary, #ffffff);
+    cursor: pointer;
+    transition: all 0.3s ease, opacity 0.8s ease;
+}
+
+.audioControls:hover {
+    background: rgba(40, 40, 43, 0.8);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.audioControls svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
