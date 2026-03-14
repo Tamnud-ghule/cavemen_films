@@ -11,8 +11,9 @@ export default function Background() {
     const [introComplete, setIntroComplete] = useState(false);
 
     useEffect(() => {
-        // Check if intro already played (sessionStorage)
-        if (sessionStorage.getItem('cavemen_intro_played')) {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        // Check if intro already played (sessionStorage) or if mobile
+        if (sessionStorage.getItem('cavemen_intro_played') || isMobile) {
             setIntroComplete(true);
             return;
         }
@@ -62,9 +63,18 @@ export default function Background() {
                     loop
                     muted
                     playsInline
-                    className={styles.backgroundVideo}
+                    className={`${styles.backgroundVideo} ${styles.desktopVideo}`}
                 >
                     <source src="/background.mp4" type="video/mp4" />
+                </video>
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className={`${styles.backgroundVideo} ${styles.mobileVideo}`}
+                >
+                    <source src="/mobile_view.mp4" type="video/mp4" />
                 </video>
                 <div className={styles.videoOverlay} />
                 <div className={styles.glassMorphism} />

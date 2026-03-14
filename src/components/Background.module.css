@@ -74,3 +74,21 @@
     opacity: 1;
     pointer-events: auto;
 }
+
+/* Mobile Video Split */
+.desktopVideo {
+    display: block;
+}
+
+.mobileVideo {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktopVideo {
+        display: none;
+    }
+    .mobileVideo {
+        display: block;
+    }
+}
