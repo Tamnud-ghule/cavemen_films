@@ -11,16 +11,22 @@ export default function Background() {
     const [introComplete, setIntroComplete] = useState(false);
 
     useEffect(() => {
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
-        // Check if intro already played (sessionStorage) or if mobile
-        if (sessionStorage.getItem('cavemen_intro_played') || isMobile) {
-            setIntroComplete(true);
-            return;
-        }
+        const checkDone = () => {
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+            if (sessionStorage.getItem('cavemen_intro_played') || isMobile) {
+                setIntroComplete(true);
+            }
+        };
 
+        checkDone();
+        window.addEventListener('resize', checkDone);
+        
         const handleIntroComplete = () => setIntroComplete(true);
         window.addEventListener('introComplete', handleIntroComplete);
-        return () => window.removeEventListener('introComplete', handleIntroComplete);
+        return () => {
+            window.removeEventListener('introComplete', handleIntroComplete);
+            window.removeEventListener('resize', checkDone);
+        };
     }, []);
 
     const toggleMute = () => {
