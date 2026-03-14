@@ -45,3 +45,24 @@
 .navLinks li a.active::after {
     width: 100%;
 }
+
+/* Mobile Navbar Styles */
+@media (max-width: 768px) {
+    .navbar {
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        left: 0;
+    }
+
+    .navLinks {
+        gap: 1.5rem;
+    }
+
+    .navLinks li a {
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+    }
+}

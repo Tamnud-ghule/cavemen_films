@@ -11,7 +11,8 @@ export default function IntroOverlay() {
     const [phase, setPhase] = useState<"waiting" | "playing" | "fading" | "done">("waiting");
 
     useEffect(() => {
-        if (sessionStorage.getItem(INTRO_PLAYED_KEY)) {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (sessionStorage.getItem(INTRO_PLAYED_KEY) || isMobile) {
             setPhase("done");
             window.dispatchEvent(new CustomEvent("introComplete"));
         }
