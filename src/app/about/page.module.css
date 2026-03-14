@@ -154,3 +154,31 @@
         gap: 2rem;
     }
 }
+
+@media (max-width: 768px) {
+    .main {
+        padding-top: 6rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .textSection {
+        padding: 2rem 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .content {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .statNumber {
+        font-size: 2rem;
+    }
+}
