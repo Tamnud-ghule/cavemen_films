@@ -183,11 +183,38 @@
 }
 
 @media (max-width: 768px) {
+    .main {
+        padding-top: 6rem;
+    }
+
     .title {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .header {
+        margin-bottom: 2.5rem;
     }
 
     .layout {
-        padding: 2rem;
+        padding: 1.5rem;
+        gap: 2rem;
+    }
+
+    .infoPanel {
+        padding-bottom: 2rem;
+        gap: 2rem;
+    }
+
+    .infoBlock h3 {
+        font-size: 1.25rem;
+    }
+
+    .infoBlock p,
+    .infoBlock a {
+        font-size: 1rem;
     }
 }
