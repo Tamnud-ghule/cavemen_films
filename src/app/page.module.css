@@ -53,6 +53,12 @@
 
 /* Media Queries for smaller screens and portrait aspects */
 @media (max-width: 768px) {
+  .main {
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
   .content {
     justify-content: center;
     padding-left: 0;
@@ -60,18 +66,21 @@
 
   .titleContainer {
     align-items: center;
+    margin-bottom: 25vh; /* Push the container up further on mobile */
   }
 
   .imageCavemen {
-    max-width: 80vw;
-    /* Take up more room on smaller screens */
+    width: 85vw;
+    max-width: 85vw;
+    /* Explicit width to prevent collapse on mobile */
   }
 
   .imageFilms {
-    max-width: 40vw;
+    width: 65vw;
+    max-width: 65vw;
     /* Scale up Films proportionally */
     margin-left: 0;
     /* Center Films under Cavemen on mobile */
-    margin-top: 1rem;
+    margin-top: -0.5rem;
   }
 }
